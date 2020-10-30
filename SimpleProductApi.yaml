@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleproductapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: SimpleProductApi
+  template:
+    metadata:
+      labels:
+        app: SimpleProductApi
+    spec:
+      containers:
+      - name: simpleproductapirepos
+        image: samplecr.azurecr.io/dnrepos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: dsconfigsn
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simpleproductapi
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: SimpleProductApi
