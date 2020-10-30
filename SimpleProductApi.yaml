@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: simpleproductapirepos
-        image: samplecr.azurecr.io/dnrepos:latest
+        image: productcr.azurecr.io/dnrepos:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
